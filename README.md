@@ -21,6 +21,9 @@ They are used like this:
 
 Functions as arguments are supported too.
 
+The test script takes somewhat long, so you might make yourself
+a coffee while it runs.
+
 <br/>
 
 *Have fun!*
