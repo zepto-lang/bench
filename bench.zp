@@ -1,0 +1,31 @@
+(load "zpbash.zp")
+
+(define (bench:time stmt)
+  "returns time stmt took to evaluate in nanoseconds"
+  (begin
+    (if (list? stmt)
+      (define call stmt)
+      (define call (list stmt)))
+    (define a (bash:unix-timestamp-with-nano))
+    (eval call)
+    (define b (bash:unix-timestamp-with-nano))
+    (+ (* (- (car b) (car a)) 1000000000) (- (cadr b) (cadr a)))))
+
+(define (bench:bench stmt . args)
+  "evaluates the statements' performance and prints results;
+   optional argument: number of times this statement should be run"
+  (let* ((counter (if (null? args) 100000 (car args)))
+         (nano-to-sec (lambda (x) (/. x 1000000000)))
+         (if-num-convert (lambda (x) (if (number? x) (number->string x) x)))
+         (evalfun (lambda (x) (bench:time stmt)))
+         (evaluated (map evalfun (range counter)))
+         (total (reduce + 0 evaluated))
+         (average (/. total counter))
+         (minimum (min-list evaluated))
+         (maximum (max-list evaluated)))
+         (write (string-join (map if-num-convert
+         `("Tested function" ,counter "times"
+           "\n\tAverage duration:  " ,average "\t(" ,(/. average 1000000000) "secs)"
+           "\n\tBest case:         " ,minimum "\t(" ,(nano-to-sec minimum) "secs)"
+           "\n\tWorst case:        " ,maximum "\t(" ,(nano-to-sec maximum) "secs)"
+           "\n\tTotal:             " ,total "\t(" ,(nano-to-sec total) "secs)")) " "))))
