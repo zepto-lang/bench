@@ -11,7 +11,7 @@ They are used like this:
 (bench:time '(+ 1 2))  ; will return time elapsed in nanoseconds
 (bench:bench '(+ 1 2))
 ; will test the statement 100k times and print metrics in the format:
-; Tested function 100000 times 
+; Tested function 100000 times:
 ; 	Average duration:   13952.31 	( 1.395231e-5 secs) 
 ; 	Best case:          0 	( 0.0 secs) 
 ; 	Worst case:         308000 	( 3.08e-4 secs) 

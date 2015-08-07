@@ -22,7 +22,7 @@
          (minimum (min-list evaluated))
          (maximum (max-list evaluated)))
          (write (string-join (map if-num-convert
-         `("Tested function" ,counter "times"
+         `("Tested function" ,counter "times:"
            "\n\tAverage duration:  " ,average "\t(" ,(/. average 1000000000) "secs)"
            "\n\tBest case:         " ,minimum "\t(" ,(nano-to-sec minimum) "secs)"
            "\n\tWorst case:        " ,maximum "\t(" ,(nano-to-sec maximum) "secs)"
