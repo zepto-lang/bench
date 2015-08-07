@@ -11,18 +11,15 @@ They are used like this:
 (bench:time '(+ 1 2))  ; will return time elapsed in nanoseconds
 (bench:bench '(+ 1 2))
 ; will test the statement 100k times and print metrics in the format:
-; Tested function 1000 times:
-; 	Average duration:   7180076.0 	( 7.180076e-3 secs) 
-; 	Best case:          5740000 	( 5.74e-3 secs) 
-; 	Worst case:         12395000 	( 1.2395e-2 secs) 
-; 	Total:              7180076000 	( 7.180076 secs)
+; Tested function 100000 times 
+; 	Average duration:   13952.31 	( 1.395231e-5 secs) 
+; 	Best case:          0 	( 0.0 secs) 
+; 	Worst case:         308000 	( 3.08e-4 secs) 
+; 	Total:              1395231000 	( 1.395231 secs)
 (bench:bench '(+ 1 2) 100) ; will test the statement 100 times
 ```
 
 Functions as arguments are supported too.
-
-The test script takes somewhat long, so you might make yourself
-a coffee while it runs.
 
 <br/>
 

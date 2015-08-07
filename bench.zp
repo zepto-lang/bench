@@ -1,14 +1,12 @@
-(load "zpbash.zp")
-
 (define (bench:time stmt)
   "returns time stmt took to evaluate in nanoseconds"
   (begin
     (if (list? stmt)
       (define call stmt)
       (define call (list stmt)))
-    (define a (bash:unix-timestamp-with-nano))
+    (define a (unix-timestamp))
     (eval call)
-    (define b (bash:unix-timestamp-with-nano))
+    (define b (unix-timestamp))
     (+ (* (- (car b) (car a)) 1000000000) (- (cadr b) (cadr a)))))
 
 (define (bench:bench stmt . args)

@@ -1,6 +1,5 @@
 (load "bench.zp")
 
-; this takes around 700 seconds on my machine, so you might want to brew yourself a coffee
 (bench:bench '(pow 1 100))
 (bench:bench '(pow 1 100) 1000)
 (bench:time '(pow 1 100))
