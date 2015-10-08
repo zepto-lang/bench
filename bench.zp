@@ -19,9 +19,9 @@
          (evaluated (map evalfun (range counter)))
          (total (reduce + 0 evaluated))
          (average (/. total counter))
-         (minimum (min-list evaluated))
-         (maximum (max-list evaluated)))
-         (write (string-join (map if-num-convert
+         (minimum (list:min evaluated))
+         (maximum (list:max evaluated)))
+         (write (string:join (map if-num-convert
          `("Tested function" ,counter "times:"
            "\n\tAverage duration:  " ,average "\t(" ,(/. average 1000000000) "secs)"
            "\n\tBest case:         " ,minimum "\t(" ,(nano-to-sec minimum) "secs)"
