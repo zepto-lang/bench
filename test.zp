@@ -1,5 +1,7 @@
 (load "bench.zp")
 
-(bench:bench '(pow 1 100))
-(bench:bench '(pow 1 100) 1000)
-(bench:time '(pow 1 100))
+(define bench (import "bench:bench"))
+(define time (import "bench:time"))
+(bench '(pow 1 100))
+(bench '(pow 1 100) 1000)
+(time '(pow 1 100))
