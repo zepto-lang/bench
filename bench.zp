@@ -32,4 +32,4 @@
              "\n\tAverage duration:  " ,average "\t(" ,(/. average 1000000000) "secs)"
              "\n\tBest case:         " ,minimum "\t(" ,(nano-to-sec minimum) "secs)"
              "\n\tWorst case:        " ,maximum "\t(" ,(nano-to-sec maximum) "secs)"
-             "\n\tTotal:             " ,total "\t(" ,(nano-to-sec total) "secs)")) " "))))))
+             "\n\tTotal:             " ,total "\t(" ,(nano-to-sec total) "secs)")) #\space))))))
