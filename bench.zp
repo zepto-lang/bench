@@ -5,20 +5,28 @@
     (list :bench bench))
 
   (time (lambda (stmt)
-    "returns time stmt took to evaluate in nanoseconds"
+    "returns time <par>stmt</par> took to evaluate in nanoseconds.
+
+     params:
+       - stmt: the statement to evaluate
+    complexity: O(k) where k is the complexity of stmt
+    returns: the time in nanoseconds"
     (begin
-      (if (list? stmt)
-        (define call stmt)
-        (define call (list stmt)))
       (define a (unix-timestamp))
-      (eval call)
+      (eval stmt)
       (define b (unix-timestamp))
       (+ (* (- (car b) (car a)) 1000000000) (- (cadr b) (cadr a))))))
 
-  (bench (lambda (stmt . args)
+  (bench (lambda (stmt . count)
     "evaluates the statements' performance and prints results;
-     optional argument: number of times this statement should be run"
-    (let* ((counter (if (null? args) 100000 (car args)))
+     optional argument: number of times this statement should be run.
+
+     params:
+       - stmt: the statement to evaluate
+       - count: the number of times the statement should be executed (optional)
+     complexity: O(k) where k is the complexity of stmt
+     returns: nil"
+    (let* ((counter (if (null? count) 100000 (car count)))
            (nano-to-sec (lambda (x) (/. x 1000000000)))
            (if-num-convert (lambda (x) (if (number? x) (number->string x) x)))
            (evalfun (lambda (x) (time stmt)))
